@@ -14,8 +14,6 @@ import './index.css';
 const storeMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 
 
-
-
 ReactDOM.render(
   <Provider store={storeMiddleware(reducers)}>
     <App />
