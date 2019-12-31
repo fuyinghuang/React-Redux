@@ -75,7 +75,7 @@ export function loadMoreMovies(searchTerm, currentPage) {
 
 export function clearMovie() {
   return {
-    type: LOAD_MORE_MOVIES,
+    type: CLEAR_MOVIES,
     payload: null
   };
 
