@@ -1,9 +1,9 @@
 import {
-  GET_POPULAR_MOVIES,
-  SEARCH_MOVIES,
-  LOAD_MORE_MOVIES,
+  SHOW_LOADING_SPINNER,
   CLEAR_MOVIES,
-  SHOW_LOAD_SPINNER
+  SEARCH_MOVIES,
+  GET_POPULAR_MOVIES,
+  LOAD_MORE_MOVIES
 } from '../actions';
 
 const defaultState = {
@@ -15,7 +15,7 @@ const defaultState = {
   searchTerm: ''
 };
 
-export default function(state =  defaultState, action) {
+export default function(state = defaultState, action) {
   switch(action.type) {
     case GET_POPULAR_MOVIES:
       return {
@@ -23,8 +23,8 @@ export default function(state =  defaultState, action) {
         movies: action.payload.results,
         heroImage: state.heroImage || action.payload.results[0],
         loading: false,
-        currentPage: state.payload.page,
-        totalPages: state.payload.total_pages,
+        currentPage: action.payload.page,
+        totalPages: action.payload.total_pages,
         searchTerm: ''
       };
     case LOAD_MORE_MOVIES:
@@ -32,27 +32,29 @@ export default function(state =  defaultState, action) {
         ...state,
         movies: [...state.movies, ...action.payload.results],
         loading: false,
-        currentPage: state.payload.page,
-        totalPages: state.payload.total_pages
+        currentPage: action.payload.page,
+        totalPages: action.payload.total_pages
       };
     case SEARCH_MOVIES:
       return {
         ...state,
-        movies: action.payload.results, 
+        movies: action.payload.results,
         loading: false,
-        currentPage: state.payload.page,
-        totalPages: state.payload.total_pages,
-        searchTerm: state.payload.searchTerm
+        currentPage: action.payload.page,
+        totalPages: action.payload.total_pages,
+        searchTerm: action.payload.searchTerm
       };
     case CLEAR_MOVIES:
       return {
         ...state,
         movies: []
       };
-    case SHOW_LOAD_SPINNER:
+    case SHOW_LOADING_SPINNER:
       return {
         ...state,
         loading: true
       };
+    default:
+      return state;
   }
 }

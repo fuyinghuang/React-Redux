@@ -8,7 +8,7 @@ import Spinner from '../elements/Spinner/Spinner';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 import './Home.css';
 
-const Home = () => (
+const Home = ({ movies, heroImage, loading, currentPage, totalPages, searchTerm, searchMovies, loadMoreMovies }) => (
   <div className='rmdb-home'>
     {heroImage ?
       <div>
@@ -16,7 +16,7 @@ const Home = () => (
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`} 
           title={heroImage.original_title} 
           text={heroImage.overview} />
-        <SearchBar callback={this.searchItems} />
+        <SearchBar callback={searchMovies} />
       </div> : null}
     <div className='rmdb-home-grid'>
       <FourColGrid header={searchTerm ? 'Search Result' : 'Popular Movies'} loading={loading}>
@@ -31,7 +31,7 @@ const Home = () => (
       </FourColGrid>
       {loading ? <Spinner /> : null}
       {(currentPage <= totalPages && !loading) ?
-        <LoadMoreBtn text='Load More' onClick={this.loadMoreItems} />
+        <LoadMoreBtn text='Load More' onClick={loadMoreMovies} />
         : null}
     </div>
   </div>

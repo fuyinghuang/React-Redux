@@ -7,12 +7,12 @@ export const LOAD_MORE_MOVIES = ' LOAD_MORE_MOVIES';
 export const CLEAR_MOVIES = 'CLEAR_MOVIES';
 
 // actions types for Home and Movie 
-export const SHOW_LOAD_SPINNER = 'SHOW_LOAD_SPINNER';
+export const SHOW_LOADING_SPINNER = 'SHOW_LOADING_SPINNER';
 
 // action creator for Home and Movie
 export function showLoadingSpinner() {
   return {
-    type: SHOW_LOAD_SPINNER,
+    type: SHOW_LOADING_SPINNER,
     payload: null
   };
 }
@@ -73,7 +73,7 @@ export function loadMoreMovies(searchTerm, currentPage) {
   };
 }
 
-export function clearMovie() {
+export function clearMovies() {
   return {
     type: CLEAR_MOVIES,
     payload: null
